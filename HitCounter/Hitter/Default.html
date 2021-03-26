@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <div id="hitCounter">0</div>
+
+    <div class="container">
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-2">User</div>
+            <div class="col-4"><input type="text" id="userInput" /></div>
+        </div>
+        <div class="row">
+            <div class="col-2">Message</div>
+            <div class="col-4"><input type="text" id="messageInput" /></div>
+        </div>
+        <div class="row">&nbsp;</div>
+        <div class="row">
+            <div class="col-6">
+                <input type="button" id="sendButton" value="Send Message" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <ul id="messagesList"></ul>
+        </div>
+    </div>
+
+    <script src="Scripts/jquery-1.6.4.js"></script>
+    <!--<script src="../Scripts/jquery-3.0.0.js"></script>-->
+    <script src="Scripts/jquery.signalR-2.1.2.js"></script>
+    <script src="Scripts/chat.js"></script>
+    <!--<script type="text/javascript">
+
+        $(function () {
+            var connection = $.hubConnection();
+            var hub = connection.createHubProxy("hitCounter");
+            hub.on("onRecordHit", function (hitcount) {
+                $('#hitCounter').text(hitcount);
+            });
+
+            connection.start(function () {
+                hub.invoke('RecordHit');
+            });
+
+        });
+
+    </script>-->
+
+</body>
+</html>

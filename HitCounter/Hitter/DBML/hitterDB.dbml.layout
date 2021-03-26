@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="hitterDB">
+  <DataContextMoniker Name="/hitterDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="365fb9e1-4e17-4537-b0b8-582faf89547a" absoluteBounds="0.75, 0.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/hitterDBDataContext/Conversation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9ca6352d-4e73-4193-a22c-ad21c6cf45ae" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e8edb7cc-d05e-406c-942c-3e0d62a66b8c" absoluteBounds="3.75, 0.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/hitterDBDataContext/Customer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c4e26c11-5990-4353-b949-7fc497d4a85a" absoluteBounds="3.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="61628b23-e844-4ba5-8d63-28dd8c609d04" absoluteBounds="4.125, 2.875, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/hitterDBDataContext/Employee" />
+      <nestedChildShapes>
+        <elementListCompartment Id="69006373-510f-485d-bf0e-ee931a94f3e7" absoluteBounds="4.14, 3.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a52dcfae-e087-4752-9755-df625cb3f016" absoluteBounds="2.25, 2.125, 2, 1.9631982421875">
+      <DataClassMoniker Name="/hitterDBDataContext/V2_Conversation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="9d4c35ad-c5f8-4da0-9f06-beb8e08f19e4" absoluteBounds="2.2649999999999997, 2.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9b765857-114a-4d0b-aaf1-05fbbda8ab4e" absoluteBounds="5.625, 1.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/hitterDBDataContext/LoginStatus" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5390bc05-9a00-4efd-8eb2-1093145ffddf" absoluteBounds="5.6400000000000006, 2.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
