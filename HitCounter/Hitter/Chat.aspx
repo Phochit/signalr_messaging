@@ -183,15 +183,19 @@
                    
             };
             
-                // Start the connection.
-                $.connection.hub.start().done(function () {
-                    console.log("connection started");
+            // Start the connection.
+            $.connection.hub.start().done(function () {
+                console.log("connection started");
 
-                    getAllMessages();
+                //getAllMessages();
+                var el = document.getElementById("chat__body");
+                el.scrollTop = el.scrollHeight;
+                //var s = "#l_";
+                //s += parseInt(document.getElementById('ContentPlaceHolder1_txtChatID').value);
+                //$(s).addClass("on");
+                //alert(s);
 
-                    
-                   
-                })
+            })
                     .fail(function (e) {
                         alert(e);
              });
@@ -268,6 +272,10 @@
                         
                         i++;
                     });
+
+                    var s = "#l_";
+                    s += parseInt(document.getElementById('ContentPlaceHolder1_txtChatID').value);
+                    $(s).addClass("on");
                 }
             });
         }
@@ -343,9 +351,7 @@
 
             document.getElementById('<%= txtChatID.ClientID %>').value = id.toString();
             //var s = document.getElementById('ContentPlaceHolder1_txtChatID').value;
-            var s = "#l_";
-            s += parseInt(document.getElementById('ContentPlaceHolder1_txtChatID').value);
-            $(s).addClass("on");
+            
         }
     </script>
 
@@ -356,9 +362,8 @@
     
     <div class="container">
       <div class="row">
-          <asp:ScriptManager EnablePageMethods="true" ID="MainSM" runat="server" ScriptMode="Release" LoadScriptsBeforeUI="true"></asp:ScriptManager>
-    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>--%>
+      
+       
         <div class="col-xs-12 col-md-3">
           <aside class="main">
             <div class="row">
@@ -395,33 +400,40 @@
 
 
         </div>
+              <%--  <asp:ScriptManager EnablePageMethods="true" ID="MainSM" runat="server" ScriptMode="Release" LoadScriptsBeforeUI="true"></asp:ScriptManager>--%>
+          <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+         <ContentTemplate>--%>
         <div class="col-xs-12 col-md-9 chat__body" id="chat__body">
           <div class="row">
             <div class="col-xs-12">
               <ul class="list-group chat__main">
-                  <%-- <%foreach (var convo in GetConversationsList(Convert.ToInt32(Request.QueryString["ruser"]),Convert.ToInt32(Session["myid"].ToString() )))
-                       { %>
+                  <%if (!string.IsNullOrEmpty(txtChatID.Text.Trim()))
+                          { %>
+                   <%foreach (var convo in GetConversationsList(Convert.ToInt32(txtChatID.Text.Trim()), Convert.ToInt32(Session["myid"].ToString())))
+                          { %>
                   <%if (convo.sender_id != Convert.ToInt32(Session["myid"]))
-                                           { %>
+                          { %>
                 <div id="<%= convo.id %>" class="row __chat__par__">
                                 <div class="__chat__ receive__chat">
                                     <p><%= convo.message %></p>
-                                    <p class="delivery-status">Delivered</p>
+                                    <p class="delivery-status"><%= convo.created_at.ToString("dd-MM-yyyy HH:mm") %></p>
                                 </div>
                             </div>
 
                   <%} %>
                   <%else
-                                           {%>
+                          {%>
                    <div id="<%= convo.id %>" class="row __chat__par__">
                                 <div class="__chat__ from__chat">
                                     <p><%= convo.message %></p>
-                                    <p class="delivery-status">Delivered</p>
+                                    <p class="delivery-status"><%= convo.created_at.ToString("dd-MM-yyyy HH:mm") %></p>
                                 </div>
                             </div>
                             
                   <%} %>
-                  <%} %>--%>
+                  <%} %>
+                  <%} %>
               </ul>
             </div>
             
@@ -429,13 +441,12 @@
              
            
         </div> 
-           <%-- </ContentTemplate>
-        </asp:UpdatePanel>--%>
+            
           <div class="col-xs-12 col-md-9 col-md-offset-3 chatdescopy">
                           <div class="chat__type__body">
               <div class="chat__type">
                   <input type="text" id="hv" runat="server" style="display:none;"  />
-                  <asp:TextBox ID="txtChatID" runat="server" AutoPostBack="true"></asp:TextBox>
+                  <asp:TextBox ID="txtChatID" runat="server" AutoPostBack="false"></asp:TextBox>
                 <textarea id="msg_box" placeholder="Type your message" runat="server"></textarea>
                 <button class="btn btn-success" id="sendMessage" runat="server" onserverclick="sendMessage_ServerClick">Send</button>
               </div>
@@ -444,6 +455,8 @@
               <span id="typerDisplay"></span>
             </div>
               </div>
+            <%-- </ContentTemplate>
+        </asp:UpdatePanel>--%>
       </div>
     </div>
           
@@ -452,11 +465,12 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="scriptarea" runat="server">
      
-     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
     <script type="text/javascript">
-      <%--  $(document).ready(function () {
-            document.getElementById('<%= txtChatID.ClientID %>').value = '<%= Session["aid"].ToString() %>';
-        });--%>
+      //$(document).ready(function () {
+      //    var s = "#l_";
+      //    s += parseInt(document.getElementById('ContentPlaceHolder1_txtChatID').value);
+      //    $(s).addClass("on");
+      //  });
 
         function cli(id) {
             localStorage.setItem("chatterid", (id).substr(2));
