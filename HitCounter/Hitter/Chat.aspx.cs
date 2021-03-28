@@ -34,6 +34,7 @@ namespace Hitter
                     int i = Convert.ToInt32(Request.QueryString["ruser"].ToString());
                     Session["chatterid"] = i;
                     GetConversationsList(i, Convert.ToInt32(Session["myid"].ToString()));
+
                     // purechat();
                 }
             }
@@ -52,10 +53,10 @@ namespace Hitter
         public string GetChatAllMessage()
         {
             ChatController con = new ChatController();
-            if (Session["senderid"] == null && !string.IsNullOrEmpty(Request.QueryString["ruser"]))
+            if (Session["myid"] == null && !string.IsNullOrEmpty(Request.QueryString["ruser"]))
             {
                 int i = Convert.ToInt32(Request.QueryString["ruser"]);
-                int j = Convert.ToInt32(Session["senderid"]);
+                int j = Convert.ToInt32(Session["myid"]);
                 var data = con.GetALLConversations(i, j);
 
                 return JsonConvert.SerializeObject(data);
@@ -88,9 +89,9 @@ namespace Hitter
 
         protected void sendMessage_ServerClick(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(Request.QueryString["ruser"]))
+            if (!string.IsNullOrEmpty(hv.Value))
             {
-                int i = Convert.ToInt32(Request.QueryString["ruser"]);
+                int i = Convert.ToInt32(hv.Value);
                 if (!string.IsNullOrEmpty(msg_box.Value))
                 {
                     string msg = msg_box.Value.ToString();

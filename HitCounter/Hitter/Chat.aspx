@@ -143,58 +143,32 @@
                 });
         });
 
-        $(function () {
-            //$('#u_2').click(function () {
-            //    alert("LOL");
-            //    //getAllMessages();
-            //    //GetAuthCreate();
-            //    //GetLoginStatus()
-            //});
+        //$(function () {
            
            
+        //    var notifications = $.connection.myHub2;
+        //    //debugger;
+        //    // Create a function that the hub can call to broadcast messages.
            
-            var notifications = $.connection.myHub2;
-            //debugger;
-            // Create a function that the hub can call to broadcast messages.
-           
-            notifications.client.updateMessages = function () {
-                //$('#ContentPlaceHolder1_sendMessage').click(function () {
-                    getAllMessages();
-                    //GetAuthCreate();
-                    //GetLoginStatus()
-            };
+        //    notifications.client.updateMessages = function () {
+              
+        //            getAllMessages();
+                   
+        //    };
             
-                // Start the connection.
-                $.connection.hub.start().done(function () {
-                    console.log("connection started");
-                    //notifications.onconn();
-                    //$('#u_2').click(function () {
-                    //    getAllMessages();
-                    //    //GetAuthCreate();
-                    //    //GetLoginStatus()
-                    //});
-                    //getAllMessages();
-                    //function reply_click(clicked_id) {
-                    //    getAllMessages();
-                    //}
-                    
-                   <%-- $('#contacts a').each(function () {
-                        var id = (($(this).attr('id')).substr(2));
-                        if (id == parseInt('<%= Session["chatterid"] %>'))
-                        {
-
-                        }
-
-                    });--%>
+        //        // Start the connection.
+        //        $.connection.hub.start().done(function () {
+        //            console.log("connection started");
+                   
 
 
                    
-                })
-                    .fail(function (e) {
-                        alert(e);
-             });
+        //        })
+        //            .fail(function (e) {
+        //                alert(e);
+        //     });
             
-        });
+        //});
 
 
         
@@ -215,7 +189,7 @@
                     //href = "Chat.aspx?ruser='+value.id+'"
                     $.each(a4, function (key, value) {
                         
-                        cts.append('<a class="user__item" id="u_' + value.id + '"  ><li id="l_'+value.id+'">'
+                        cts.append('<a class="user__item" id="u_' + value.id + '" onclick="cli(this.id)"   ><li id="l_'+value.id+'">'
                                     +'<div class="avatar">'
                                         +'<img src="/Content/no_avatar.png">'
                                     +'</div>'
@@ -273,10 +247,11 @@
         function getAllMessages() {
             
             var tbl = $('.chat__main');
+            var id = parseInt(localStorage.chatterid);
             ////var senderid = parseInt( '<%= Session["senderid"] %>');
             var senderid = parseInt('<%= Session["myid"] %>');
             $.ajax({
-                url: '/Home/GetReceiveMessage',
+                url: '/Home/GetReceiveMessage/'+id,
                 contentType: 'application/html ; charset:utf-8',
                 type: 'GET',
                 dataType: 'html',
@@ -339,17 +314,11 @@
         }
     </script>
 
-    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
-    <script>
-        $(document).ready(function () {
-
-            $('#l_2').click(function () {
-                alert("fuck");
-            });
-        });
-    </script>
+  
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <%--<asp:HiddenField id="hidval" runat="server"></asp:HiddenField>--%>
+    
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-3">
@@ -425,6 +394,7 @@
           <div class="col-xs-12 col-md-9 col-md-offset-3 chatdescopy">
                           <div class="chat__type__body">
               <div class="chat__type">
+                  <input type="text" id="hv" runat="server" style="display:none;" />
                 <textarea id="msg_box" placeholder="Type your message" runat="server"></textarea>
                 <button class="btn btn-success" id="sendMessage" runat="server" onserverclick="sendMessage_ServerClick">Send</button>
               </div>
@@ -435,11 +405,32 @@
               </div>
       </div>
     </div>
+    <%--<label id="hidval" style="display:none;" runat="server"></label>--%>
+    
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="scriptarea" runat="server">
      
+     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
     <script type="text/javascript">
-        
-       
+        //$(document).ready(function () {
+
+        //    $('#l_2').click(function () {
+        //        alert("fuck");
+        //    });
+        //});
+
+        function cli(id) {
+            localStorage.setItem("chatterid", (id).substr(2));
+            //alert(localStorage.chatterid);
+            $('#ContentPlaceHolder1_hv').text(localStorage.chatterid);
+            getAllMessages();
+        }
+
+        //document.getElementById('l_2').onclick = function changeContent() {
+
+        //    document.getElementById('l_2').textContent = "Help me";
+        //    document.getElementById('l_2').style = "Color: red";
+
+        //}
     </script>
 </asp:Content>

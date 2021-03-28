@@ -28,13 +28,15 @@ namespace Hitter.Controllers
             con.InsertEmployee(emp);
         }
 
-        public JsonResult GetReceiveMessage()
+        
+        public JsonResult GetReceiveMessage(int id)
         {
             List<V2_Conversation> messages = new List<V2_Conversation>();
             V2Repository r = new V2Repository();
-            if (Session["myid"] != null && Session["chatterid"]!=null)
+            
+            if (Session["myid"] != null && id!=0)
             {
-                messages = r.GetReceiveMsg(Convert.ToInt32(Session["myid"].ToString()),Convert.ToInt32(Session["chatterid"].ToString()));
+                messages = r.GetReceiveMsg(Convert.ToInt32(Session["myid"].ToString()), id); //Convert.ToInt32(Session["chatterid"].ToString()));
                 return Json(messages, JsonRequestBehavior.AllowGet);
             }
             else
