@@ -72,6 +72,26 @@
         .users__bar .panel-body.users__body .user__item .status-bar.on{
             background-color:green;
         }
+
+        #ContentPlaceHolder1_txtChatID
+        {
+            color:white;
+            border:none;
+            height:0;
+            width:0;
+        }
+
+        .users__bar .panel-body.users__body .user__item li.on{
+            background-color: #4d9aff;
+        }
+        .users__bar .panel-body.users__body .user__item li.on > span{
+            color:white;
+        }
+
+        /*#u_3 .users__bar .panel-body.users__body .user__item li.on{
+            background-color: #4d9aff;
+        }*/
+
     </style>
 
       <script src="Scripts/modernizr-2.8.3.js"></script>
@@ -160,6 +180,7 @@
                 // Start the connection.
                 $.connection.hub.start().done(function () {
                     console.log("connection started");
+
                     getAllMessages();
 
 
@@ -319,9 +340,12 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--<asp:HiddenField id="hidval" runat="server"></asp:HiddenField>--%>
-    <asp:ScriptManager EnablePageMethods="true" ID="MainSM" runat="server" ScriptMode="Release" LoadScriptsBeforeUI="true"></asp:ScriptManager>
+    
     <div class="container">
       <div class="row">
+          <asp:ScriptManager EnablePageMethods="true" ID="MainSM" runat="server" ScriptMode="Release" LoadScriptsBeforeUI="true"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
         <div class="col-xs-12 col-md-3">
           <aside class="main">
             <div class="row">
@@ -392,6 +416,8 @@
              
            
         </div> 
+            </ContentTemplate>
+        </asp:UpdatePanel>
           <div class="col-xs-12 col-md-9 col-md-offset-3 chatdescopy">
                           <div class="chat__type__body">
               <div class="chat__type">
@@ -407,6 +433,7 @@
               </div>
       </div>
     </div>
+          
     <%--<label id="hidval" style="display:none;" runat="server"></label>--%>
     
 </asp:Content>
@@ -429,6 +456,12 @@
 
            <%-- '<%Session["aid"] = "' + (localStorage.chatterid) + '"; %>';
             alert('<%= Session["aid"] %>');--%>
+            if ($('.users__bar .panel-body.users__body .user__item li').hasClass("on")) {
+                $('.users__bar .panel-body.users__body .user__item li').removeClass("on");
+            }
+
+            $('#l_' + localStorage.chatterid).addClass("on");
+
             getAllMessages();
         }
 

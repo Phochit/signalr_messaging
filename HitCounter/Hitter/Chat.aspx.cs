@@ -44,6 +44,7 @@ namespace Hitter
             {
                 //vid = Convert.ToInt32( hv.Value);
             }
+            //txtChatID.Visible = false;
         }
 
         public List<V2_Conversation> GetConversationsList(int receiver, int cus)
