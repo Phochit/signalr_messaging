@@ -143,32 +143,33 @@
                 });
         });
 
-        //$(function () {
+        $(function () {
            
            
-        //    var notifications = $.connection.myHub2;
-        //    //debugger;
-        //    // Create a function that the hub can call to broadcast messages.
+            var notifications = $.connection.myHub2;
+            //debugger;
+            // Create a function that the hub can call to broadcast messages.
            
-        //    notifications.client.updateMessages = function () {
+            notifications.client.updateMessages = function () {
               
-        //            getAllMessages();
+                    getAllMessages();
+
                    
-        //    };
+            };
             
-        //        // Start the connection.
-        //        $.connection.hub.start().done(function () {
-        //            console.log("connection started");
-                   
+                // Start the connection.
+                $.connection.hub.start().done(function () {
+                    console.log("connection started");
+                    getAllMessages();
 
 
                    
-        //        })
-        //            .fail(function (e) {
-        //                alert(e);
-        //     });
+                })
+                    .fail(function (e) {
+                        alert(e);
+             });
             
-        //});
+        });
 
 
         
@@ -318,7 +319,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <%--<asp:HiddenField id="hidval" runat="server"></asp:HiddenField>--%>
-    
+    <asp:ScriptManager EnablePageMethods="true" ID="MainSM" runat="server" ScriptMode="Release" LoadScriptsBeforeUI="true"></asp:ScriptManager>
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-md-3">
@@ -394,7 +395,8 @@
           <div class="col-xs-12 col-md-9 col-md-offset-3 chatdescopy">
                           <div class="chat__type__body">
               <div class="chat__type">
-                  <input type="text" id="hv" runat="server" style="display:none;" />
+                  <input type="text" id="hv" runat="server" style="display:none;"  />
+                  <asp:TextBox ID="txtChatID" runat="server" AutoPostBack="true"></asp:TextBox>
                 <textarea id="msg_box" placeholder="Type your message" runat="server"></textarea>
                 <button class="btn btn-success" id="sendMessage" runat="server" onserverclick="sendMessage_ServerClick">Send</button>
               </div>
@@ -422,7 +424,11 @@
         function cli(id) {
             localStorage.setItem("chatterid", (id).substr(2));
             //alert(localStorage.chatterid);
-            $('#ContentPlaceHolder1_hv').text(localStorage.chatterid);
+            document.getElementById('<%= txtChatID.ClientID %>').value = (localStorage.chatterid);
+            //document.getElementById('<%= Session["chatterid"] %>').value = (localStorage.chatterid);
+
+           <%-- '<%Session["aid"] = "' + (localStorage.chatterid) + '"; %>';
+            alert('<%= Session["aid"] %>');--%>
             getAllMessages();
         }
 

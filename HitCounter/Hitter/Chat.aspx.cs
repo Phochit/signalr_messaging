@@ -14,6 +14,7 @@ namespace Hitter
 {
     public partial class Chat : System.Web.UI.Page
     {
+        public static int hvid;
         protected void Page_Load(object sender, EventArgs e)
         {
             HtmlControl divControl = this.Master.FindControl("logout") as HtmlControl;
@@ -35,8 +36,13 @@ namespace Hitter
                     Session["chatterid"] = i;
                     GetConversationsList(i, Convert.ToInt32(Session["myid"].ToString()));
 
+                    //hvid = Convert.ToInt32(hv.Value);
                     // purechat();
                 }
+            }
+            else
+            {
+                //vid = Convert.ToInt32( hv.Value);
             }
         }
 
@@ -89,9 +95,10 @@ namespace Hitter
 
         protected void sendMessage_ServerClick(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(hv.Value))
-            {
-                int i = Convert.ToInt32(hv.Value);
+            //if ( Session["aid"]!=null )
+            //{
+                //int abc = int.Parse(Session["aid"].ToString());
+                int i = Convert.ToInt32(txtChatID.Text.Trim());
                 if (!string.IsNullOrEmpty(msg_box.Value))
                 {
                     string msg = msg_box.Value.ToString();
@@ -110,7 +117,7 @@ namespace Hitter
 
                 }
 
-            }
+            //}
 
         }
     }

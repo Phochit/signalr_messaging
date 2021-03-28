@@ -15,6 +15,15 @@ namespace Hitter
     {
 
         /// <summary>
+        /// MainSM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.ScriptManager MainSM;
+
+        /// <summary>
         /// hv control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Hitter
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText hv;
+
+        /// <summary>
+        /// txtChatID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtChatID;
 
         /// <summary>
         /// msg_box control.
