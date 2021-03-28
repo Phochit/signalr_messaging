@@ -115,7 +115,7 @@ namespace Hitter
                     con.InsertV2Convo(conv);
 
                     msg_box.Value = "";
-
+                    //Session["aid"] = i;
                 }
 
             //}

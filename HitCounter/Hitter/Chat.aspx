@@ -119,6 +119,12 @@
 
         //});
 
+        //$(function () {
+           
+        //});
+
+        
+
         
 
         $(function () {
@@ -183,7 +189,7 @@
 
                     getAllMessages();
 
-
+                    
                    
                 })
                     .fail(function (e) {
@@ -284,6 +290,7 @@
                     tbl.empty();
                     var i = 0;
                     $.each(a2, function (key, value) {
+                        
                         if (value.sender_id != senderid) {
                             tbl.append('<div id="' + value.id + '" class="row __chat__par__">' +
                                 '<div class="__chat__ receive__chat">' +
@@ -333,6 +340,12 @@
 
             }
             );
+
+            document.getElementById('<%= txtChatID.ClientID %>').value = id.toString();
+            //var s = document.getElementById('ContentPlaceHolder1_txtChatID').value;
+            var s = "#l_";
+            s += parseInt(document.getElementById('ContentPlaceHolder1_txtChatID').value);
+            $(s).addClass("on");
         }
     </script>
 
@@ -344,8 +357,8 @@
     <div class="container">
       <div class="row">
           <asp:ScriptManager EnablePageMethods="true" ID="MainSM" runat="server" ScriptMode="Release" LoadScriptsBeforeUI="true"></asp:ScriptManager>
-    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate>
+    <%--<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>--%>
         <div class="col-xs-12 col-md-3">
           <aside class="main">
             <div class="row">
@@ -416,8 +429,8 @@
              
            
         </div> 
-            </ContentTemplate>
-        </asp:UpdatePanel>
+           <%-- </ContentTemplate>
+        </asp:UpdatePanel>--%>
           <div class="col-xs-12 col-md-9 col-md-offset-3 chatdescopy">
                           <div class="chat__type__body">
               <div class="chat__type">
@@ -441,12 +454,9 @@
      
      <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--%>
     <script type="text/javascript">
-        //$(document).ready(function () {
-
-        //    $('#l_2').click(function () {
-        //        alert("fuck");
-        //    });
-        //});
+      <%--  $(document).ready(function () {
+            document.getElementById('<%= txtChatID.ClientID %>').value = '<%= Session["aid"].ToString() %>';
+        });--%>
 
         function cli(id) {
             localStorage.setItem("chatterid", (id).substr(2));
@@ -460,9 +470,10 @@
                 $('.users__bar .panel-body.users__body .user__item li').removeClass("on");
             }
 
-            $('#l_' + localStorage.chatterid).addClass("on");
+           
 
             getAllMessages();
+            $('#l_' + localStorage.chatterid).addClass("on");
         }
 
         //document.getElementById('l_2').onclick = function changeContent() {
